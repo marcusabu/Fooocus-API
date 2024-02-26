@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  fooocus-api:
+    image: konieshadow/fooocus-api
+    environment:
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - NVIDIA_VISIBLE_DEVICES=all
+      - TZ=Europe/Paris
+    ports:
+      - "8888:8888"
+    restart: unless-stopped
+    runtime: nvidia
+    volumes:
+      - .:/app
+      - ../Fooocus/:/Fooocus
